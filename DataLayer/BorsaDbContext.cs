@@ -1,4 +1,5 @@
-﻿using DataLayer.Entities;
+﻿using CommonLib;
+using DataLayer.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -16,5 +17,7 @@ namespace DataLayer
         }
 
         public DbSet<Banka> Bankalar { get; set; }
+
+        public DbSet<ExchangeRate> ExchangeRates { get; set; }
     }
 }

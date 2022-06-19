@@ -21,8 +21,8 @@ namespace BorsaMvc.Controllers
             List<BankaViewModel> model = new List<BankaViewModel>();
 
             HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri("http://localhost:55749");
-            var res = await client.GetAsync("http://localhost:55749/api/Banka");
+            client.BaseAddress = new Uri("http://localhost:5000");
+            var res = await client.GetAsync("http://localhost:5000/api/Banka");
             // res.Wait();
 
             var resp = await res.Content.ReadAsStringAsync();
