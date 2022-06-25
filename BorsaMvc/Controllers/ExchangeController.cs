@@ -13,25 +13,37 @@ using System.Threading.Tasks;
 
 namespace BorsaMvc.Controllers
 {
-    public class BankaController : Controller
+    public class ExchangeController : Controller
     {
         // GET: BankaController
         public async Task<ActionResult> Index()
         {
-            List<BankaViewModel> model = new List<BankaViewModel>();
-
+            
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri("http://localhost:55749");
-            var res = await client.GetAsync("http://localhost:55749/api/Banka");
+            var res = await client.GetAsync("http://localhost:55749/api/Exchange");
             // res.Wait();
 
             var resp = await res.Content.ReadAsStringAsync();
-            var liste = JsonConvert.DeserializeObject<List<BankaViewModel>>(resp);
+            var liste = JsonConvert.DeserializeObject<List<ExchangeRate>>(resp);
+            client.Dispose();
+
+            client = new HttpClient();
+            client.BaseAddress = new Uri("http://localhost:55749");
+            var resBanka = await client.GetAsync("http://localhost:55749/api/Banka");
+            // res.Wait();
+
+            var respBanka = await resBanka.Content.ReadAsStringAsync();
+            var listeBanka = JsonConvert.DeserializeObject<List<BankaViewModel>>(respBanka);
 
             //model.Add(new BankaViewModel() { Id = 1, Ad = "asd", Url = "www.wwdad" });
             //model.Add(new BankaViewModel() { Id = 2, Ad = "AAasd", Url = "www.wwdad" });
+            ExchangeViewModel model = new ExchangeViewModel();
+            model.bankas = listeBanka;
+            model.exchangeRates = liste;
+            client.Dispose();
 
-            return View(liste);
+            return View(model);
         }
 
         // GET: BankaController/Details/5

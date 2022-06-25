@@ -1,5 +1,5 @@
-﻿using CommonLib;
-using DataLayer;
+﻿using DataLayer;
+using DataLayer.Entities;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -12,44 +12,40 @@ namespace BorsaApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ExhangeController : ControllerBase
+    public class ChartSampleController : ControllerBase
     {
         BorsaDbContext _context;
-        public ExhangeController(BorsaDbContext context)
+        public ChartSampleController(BorsaDbContext context)
         {
             _context = context;
-
         }
-        // GET: api/<ExhangeController>
+        // GET: api/<ChartSampleController>
         [HttpGet]
-        public IEnumerable<ExchangeRate> Get()
+        public IEnumerable<ChartTestLine> Get()
         {
-            //  return _context.Set<ExchangeRate>().ToList();
-            return _context.ExchangeRates.ToList();
+            return _context.ChartTestLines.ToList();
         }
 
-        // GET api/<ExhangeController>/5
+        // GET api/<ChartSampleController>/5
         [HttpGet("{id}")]
         public string Get(int id)
         {
             return "value";
         }
 
-        // POST api/<ExhangeController>
+        // POST api/<ChartSampleController>
         [HttpPost]
-        public void Post([FromBody] ExchangeRate value)
+        public void Post([FromBody] string value)
         {
-            _context.ExchangeRates.Add(value);
-            _context.SaveChanges();
         }
 
-        // PUT api/<ExhangeController>/5
+        // PUT api/<ChartSampleController>/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
         }
 
-        // DELETE api/<ExhangeController>/5
+        // DELETE api/<ChartSampleController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {

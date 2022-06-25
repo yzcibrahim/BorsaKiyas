@@ -31,6 +31,7 @@ namespace AltinFiyatlari
             {
                 while (true)
                 {
+                    Console.WriteLine($"{_banka.Ad} crawle ediliyor");
                     Thread.Sleep(5000);
                     if (!cancel)
                         try

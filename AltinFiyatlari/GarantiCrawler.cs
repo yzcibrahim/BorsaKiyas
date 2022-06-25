@@ -69,7 +69,6 @@ namespace AltinFiyatlari
 
         }
 
-        
 
         public void CrawleOld()
         {
@@ -90,5 +89,5 @@ namespace AltinFiyatlari
         }
     }
 
-    
+
 }

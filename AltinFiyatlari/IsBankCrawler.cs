@@ -21,6 +21,7 @@ namespace AltinFiyatlari
        
         protected override void DoOps(ChromeDriver driver)
         {
+            driver = new ChromeDriver();
             driver.Navigate().GoToUrl(_banka.Url);
 
             var altinElement = driver.FindElements(By.ClassName("i-bk-area")).Last();
@@ -33,6 +34,7 @@ namespace AltinFiyatlari
             var alisD = Convert.ToDouble(alisText);
             var satisD = Convert.ToDouble(satisText);
             PostToApi(alisD, satisD);
+            driver.Dispose();
         }
 
        

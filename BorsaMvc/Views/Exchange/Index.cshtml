@@ -1,0 +1,55 @@
+﻿@model BorsaMvc.Models.ExchangeViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table id="myTable" class="table">
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>Banka</th>
+            <th>Alis</th>
+            <th>satis</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.exchangeRates)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>
+                    @Model.bankas.FirstOrDefault(c => c.Id == item.BankaId).Ad
+
+                </td>
+                <td>@item.Alis</td>
+                <td>@item.Satis</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            console.log("asdasd");
+            $('#myTable').DataTable(
+                {
+                    order: [[1, 'desc']],
+                    lengthMenu: [
+                        [10, 100, 150, -1],
+                        [10, 100, 150, 'hepsi'],
+                    ],
+                    "lengthChange": false
+                }
+                );
+        });
+
+        
+    </script>
+}

@@ -27,7 +27,7 @@ namespace BorsaApi.Controllers
         [HttpGet]
         public IEnumerable<Banka> Get()
         {
-            return _context.Bankalar.ToList();
+            return _context.Bankalar.Where(c=>c.IsActive).ToList();
         }
 
         // GET api/<BankaController>/5

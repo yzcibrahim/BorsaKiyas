@@ -23,6 +23,7 @@ namespace AltinFiyatlari
             var resp = res.Result.Content.ReadAsStringAsync();
             var liste = JsonConvert.DeserializeObject<List<BankaViewModel>>(resp.Result);
 
+           
 
             foreach (var banka in liste)
             {
@@ -31,6 +32,19 @@ namespace AltinFiyatlari
                 ICrawler gc = (ICrawler) Activator.CreateInstance(Type.GetType($"AltinFiyatlari.{banka.Ad}Crawler"), banka);
                 Task.Run(gc.Crawle);
                //  gc.Crawle();
+
+
+                //if(banka.Ad=="Garanti")
+                //{
+                //    GarantiCrawler gc1 = new GarantiCrawler(banka);
+                //    gc1.Crawle();
+                //}
+                //else if(banka.Ad=="IsBAnk")
+                //{
+                //    IsBankCrawler gc1 = new IsBankCrawler();
+                //    gc1.Crawle();
+                //}
+                //else if
             }
 
             while(true)

@@ -19,5 +19,7 @@ namespace DataLayer
         public DbSet<Banka> Bankalar { get; set; }
 
         public DbSet<ExchangeRate> ExchangeRates { get; set; }
+
+        public DbSet<ChartTestLine> ChartTestLines { get; set; }
     }
 }
